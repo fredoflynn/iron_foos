@@ -6,64 +6,103 @@
     <meta charset="UTF-8">
     <title></title>
     <link href="{% static "css/main.css" %}" rel="stylesheet">
+    <link href="{% static "https://fonts.googleapis.com/css?family=Sigmar+One" %}" rel="stylesheet">
 </head>
 <body>
-    {% for game in games %}
+	<div id="header">
+		<img src="{% static 'images/ironyardlogo.png'%}" />
+		<h1>Iron Foos</h1>
+	</div>
+	<div id="mainMain">
+		<div id="homeContainer">
+			<h2>Welcome to Iron Foos</h2><br/>
+			<img src="http://theleftahead.com/wp-content/uploads/2015/01/stock-footage-a-perspective-pan-through-the-middle-of-a-wooden-foosball-table-showing-a-blue-and-red-team-on-a.jpg" />
+			<p>Where students of The Iron Yard can sign up for a foosball tournament.</p>
+			<p>Click below to join a tournament!</p>
+			<input id="joinNow" type="submit" value="Join Now" />
+		</div>
+		<div id="signUpContainer">
+			<div class="inputContainer">
+				<span>Sign up here:</span> <input type="text" class="signUp" placeholder="Enter Name" />
+			</div>
+			<div id="currentContainer">
+					<span>Currently signed up:</span><span>Time left to Sign Up: <span id="timer">00:00</span></span>
+			</div>
+		</div>
+		<div id="tourney">
+			<div>Player 1</div>
+	    <div>Player 2</div>
+	    <div>Player 3</div>
+	    <div>Player 4</div>
+	    <div>Player 5</div>
+	    <div>Player 6</div>
+	    <div>Player 7</div>
+	    <div>Player 8</div>
+		</div>
+	</div>
+	<div id="matchContainer">
+	  {% for game in games %}
 
-    {% if game.game_num == 1 %}
-    <h3>Game 1</h3>
-    <p><a href="{% url 'round2' game.player1.id %}">{{ game.player1 }}</a></p>
-    <p><a href="{% url 'round2' game.player2.id %}">{{ game.player2 }}</a></p>
-    <p>Winner: {{ game.winner }}</p>
+	  {% if game.game_num == 1 %}
+	  <h3>Game 1</h3>
+	  <p><a href="{% url 'round2' game.player1.id %}">{{ game.player1 }}</a></p>
+	  <p><a href="{% url 'round2' game.player2.id %}">{{ game.player2 }}</a></p>
+	  <p>Winner: {{ game.winner }}</p>
 
-    {% elif game.game_num == 2 %}
-    <h3>Game 2</h3>
-    <p><a href="{% url 'round2' game.player1.id %}">{{ game.player1 }}</a></p>
-    <p><a href="{% url 'round2' game.player2.id %}">{{ game.player2 }}</a></p>
-    <p>Winner: {{ game.winner }}</p>
+	  {% elif game.game_num == 2 %}
+	  <h3>Game 2</h3>
+	  <p><a href="{% url 'round2' game.player1.id %}">{{ game.player1 }}</a></p>
+	  <p><a href="{% url 'round2' game.player2.id %}">{{ game.player2 }}</a></p>
+	  <p>Winner: {{ game.winner }}</p>
 
-    {% elif game.game_num == 3 %}
-    <h3>Game 3</h3>
-    <p><a href="{% url 'round2' game.player1.id %}">{{ game.player1 }}</a></p>
-    <p><a href="{% url 'round2' game.player2.id %}">{{ game.player2 }}</a></p>
-    <p>Winner: {{ game.winner }}</p>
+	  {% elif game.game_num == 3 %}
+	  <h3>Game 3</h3>
+	  <p><a href="{% url 'round2' game.player1.id %}">{{ game.player1 }}</a></p>
+	  <p><a href="{% url 'round2' game.player2.id %}">{{ game.player2 }}</a></p>
+	  <p>Winner: {{ game.winner }}</p>
 
-    {% elif game.game_num == 4 %}
-    <h3>Game 4</h3>
-    <p><a href="{% url 'round2' game.player1.id %}">{{ game.player1 }}</a></p>
-    <p><a href="{% url 'round2' game.player2.id %}">{{ game.player2 }}</a></p>
-    <p>Winner: {{ game.winner }}</p>
+	  {% elif game.game_num == 4 %}
+	  <h3>Game 4</h3>
+	  <p><a href="{% url 'round2' game.player1.id %}">{{ game.player1 }}</a></p>
+	  <p><a href="{% url 'round2' game.player2.id %}">{{ game.player2 }}</a></p>
+	  <p>Winner: {{ game.winner }}</p>
 
-    {% elif game.game_num == 5 %}
-    <h3>Game 5</h3>
-        {% if game.player1 %}
-            <p><a href="{% url 'round3' game.player1.id %}">{{ game.player1 }}</a></p>
-        {% endif %}
-        {% if game.player2 %}
-            <p><a href="{% url 'round3' game.player2.id %}">{{ game.player2 }}</a></p>
-        {% endif %}
-    <p>Winner: {{ game.winner }}</p>
+	  {% elif game.game_num == 5 %}
+	  <h3>Game 5</h3>
+	      {% if game.player1 %}
+	          <p><a href="{% url 'round3' game.player1.id %}">{{ game.player1 }}</a></p>
+	      {% endif %}
+	      {% if game.player2 %}
+	          <p><a href="{% url 'round3' game.player2.id %}">{{ game.player2 }}</a></p>
+	      {% endif %}
+	  <p>Winner: {{ game.winner }}</p>
 
-    {% elif game.game_num == 6 %}
-    <h3>Game 6</h3>
-        {% if game.player1 %}
-            <p><a href="{% url 'round3' game.player1.id %}">{{ game.player1 }}</a></p>
-        {% endif %}
-        {% if game.player2 %}
-            <p><a href="{% url 'round3' game.player2.id %}">{{ game.player2 }}</a></p>
-        {% endif %}
-    <p>Winner: {{ game.winner }}</p>
+	  {% elif game.game_num == 6 %}
+	  <h3>Game 6</h3>
+	      {% if game.player1 %}
+	          <p><a href="{% url 'round3' game.player1.id %}">{{ game.player1 }}</a></p>
+	      {% endif %}
+	      {% if game.player2 %}
+	          <p><a href="{% url 'round3' game.player2.id %}">{{ game.player2 }}</a></p>
+	      {% endif %}
+	  <p>Winner: {{ game.winner }}</p>
 
-    {% elif game.game_num == 7 %}
-    <h3>Game 7</h3>
-        {% if game.player1 %}
-            <p><a href="{% url 'winner' game.player1.id %}">{{ game.player1 }}</a></p>
-        {% endif %}
-        {% if game.player2 %}
-            <p><a href="{% url 'winner' game.player2.id %}">{{ game.player2 }}</a></p>
-        {% endif %}
-    <p>Winner: {{ game.winner }}</p>
-    {% endif %}
-    {% endfor %}
+	  {% elif game.game_num == 7 %}
+	  <h3>Game 7</h3>
+	      {% if game.player1 %}
+	          <p><a href="{% url 'winner' game.player1.id %}">{{ game.player1 }}</a></p>
+	      {% endif %}
+	      {% if game.player2 %}
+	          <p><a href="{% url 'winner' game.player2.id %}">{{ game.player2 }}</a></p>
+	      {% endif %}
+	  <p>Winner: {{ game.winner }}</p>
+	  {% endif %}
+	  {% endfor %}
+	</div>
+	<div id="footer">
+		<p> &copy; 2015 Iron Foos, LLC</p>
+	</div>
+	<script type="text/javascript" src="{% static "https://code.jquery.com/jquery-1.11.3.min.js" %}"></script>
+	<script type="text/javascript" src="{% static "js/main.js" %}"></script>
 </body>
 </html>

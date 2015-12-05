@@ -1,3 +1,140 @@
-h3 {
-    font-size: 30px;
+body {
+	font-family: 'Sigmar One', cursive;
+}
+
+#mainMain {
+    width: 100%;
+    height: 800px;
+    background: url('http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/fabric_of_squares_gray.png')
+}
+
+#homeContainer {
+    width: 100%;
+    height: 800px;
+    text-align: center;
+}
+
+#homeContainer h2 {
+    margin: 0px;
+    position: relative;
+    top: 10px;
+}
+
+#homeContainer img {
+    width: 450px;
+    height: 250px;
+    border-radius: 10px;
+}
+
+#joinNow {
+    width: 150px;
+    height: 40px;
+    border: 1px solid #39474E;
+    border-radius: 20px;
+    font-size: 18px;
+    font-family: 'Sigmar One', cursive;
+    outline: none;
+    background: #39474E;
+    color: white;
+}
+
+#header {
+    width: 100%;
+    height: 70px;
+    position: relative;
+    border-bottom: 3px solid black;
+}
+
+#header img{
+    width: 90px;
+    height: 60px;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+#header h1{
+    display: inline-block;
+    width: 30%;
+    margin: 0;
+    margin-left: 15px;
+}
+
+#signUpContainer {
+    width: 100%;
+    height: 800px;
+    position: relative;
+    left: 20px;
+    top: 40px;
+}
+
+.inputContainer {
+    width: 100%;
+}
+
+.inputContainer input{
+    width: 30%;
+    height: 25px;
+    font-size: 14px;
+    padding-left: 10px;
+    border: 1px solid #666;
+    outline: none;
+    border-radius: 5px;
+}
+
+#currentContainer {
+    position: relative;
+    top: 30px;
+}
+
+#currentContainer span {
+    margin-right: 170px;
+}
+
+#bracket {
+    width: 100%;
+    height: 800px;
+}
+
+#tourney {
+    width: 500px;
+    position: relative;
+}
+
+#tourney div {
+    border: 1px solid #000;
+    border-left: 0;
+    padding: 5px;
+    position: absolute;
+    width: 180px;
+}
+
+#tourney div:nth-of-type(1) {
+    top: 40px;
+}
+
+#tourney div:nth-of-type(2) {
+    top: 80px;
+}
+
+#tourney div:nth-of-type(3) {
+    top: 180px;
+}
+
+#tourney div:nth-of-type(4) {
+    top: 250px;
+}
+
+#footer{
+    width: 100%;
+    height: 45px;
+    position: relative;
+    border-top: 3px solid black;
+}
+
+#footer p {
+    position: relative;
+    display: inline-block;
+    margin: 0px;
+    top: 15px;
+    left: 20px;
 }
