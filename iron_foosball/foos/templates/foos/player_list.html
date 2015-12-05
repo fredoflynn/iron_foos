@@ -2,21 +2,30 @@
 {% load staticfiles %}
 
 {% block content %}
-    {% for player in player_list %}
-    <h2>{{ player.name }}</h2>
-    <ul>
-        <li>Wins: {{ player.wins }}</li>
-        <li>Losses: {{ player.losses }}</li>
-        <li>Winning Pct: {{ player.winning_pct }}</li>
-    </ul>
-    {% endfor %}
-    {% if is_paginated %}
-        {% if page_obj.has_previous %}
+	<div id="mainMain">
+		<div id="playerList">
+		  {% for player in player_list %}
+		  <h2>{{ player.name }}</h2>
+		  {% if player.winning_pct >= 0.5 %}
+		    <img src="{% static 'images/good.jpg' %}">
+		    {% else %}
+		    <img src="{% static 'images/bad.jpg' %}">
+		    {% endif %}
+		  <ul>
+		      <li>Wins: {{ player.wins }}</li>
+		      <li>Losses: {{ player.losses }}</li>
+		      <li>Winning Pct: {{ player.winning_pct }}</li>
+		  </ul>
+		  {% endfor %}
+		</div>
+        {% if is_paginated %}
+          {% if page_obj.has_previous %}
             <a href="{% url 'list_players' %}?page={{ page_obj.previous_page_number }}"><-Prev</a>
         {% endif %}
         {{ page_obj }}
         {% if page_obj.has_next %}
             <a href="{% url 'list_players' %}?page={{ page_obj.next_page_number }}">Next -></a>
         {% endif %}
-    {% endif %}
+        {% endif %}
+	</div>
 {% endblock %}

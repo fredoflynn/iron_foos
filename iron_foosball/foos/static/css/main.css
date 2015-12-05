@@ -1,49 +1,35 @@
-
-body {
+body{
 	font-family: 'Sigmar One', cursive;
 }
-
-#mainMain {
+#mainMain{
     width: 100%;
     height: 800px;
     background: url('http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/fabric_of_squares_gray.png')
 }
 
-#homeContainer {
-    width: 100%;
-    height: 800px;
-    text-align: center;
-}
-
-#homeContainer h2 {
-    margin: 0px;
-    position: relative;
-    top: 10px;
-}
-
-#homeContainer img {
-    width: 450px;
-    height: 250px;
-    border-radius: 10px;
-}
-
-#joinNow {
-    width: 150px;
-    height: 40px;
-    border: 1px solid #39474E;
-    border-radius: 20px;
-    font-size: 18px;
-    font-family: 'Sigmar One', cursive;
-    outline: none;
-    background: #39474E;
-    color: white;
-}
-
-#header {
+#header{
     width: 100%;
     height: 70px;
     position: relative;
     border-bottom: 3px solid black;
+}
+
+#header ul{
+	list-style: none;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	right: 150px;
+}
+
+#header li{
+	float: left;
+	margin-left: 50px;
+}
+
+#header a{
+	text-decoration: none;
 }
 
 #header img{
@@ -58,6 +44,47 @@ body {
     width: 30%;
     margin: 0;
     margin-left: 15px;
+}
+
+#homeContainer{
+    width: 100%;
+    height: 800px;
+    text-align: center;
+}
+
+#homeContainer h2{
+    margin: 0px;
+    position: relative;
+    top: 10px;
+}
+
+#homeContainer img{
+    width: 450px;
+    height: 250px;
+    border-radius: 10px;
+}
+
+.createInput{
+	width: 30%;
+	height: 20px;
+	border: 1px solid black;
+	border-radius: 5px;
+	outline: none;
+	margin-left: 10px;
+}
+
+#joinNow{
+		position: relative;
+    width: 150px;
+    height: 40px;
+    border: 1px solid #39474E;
+    border-radius: 20px;
+    font-size: 18px;
+    font-family: 'Sigmar One', cursive;
+    outline: none;
+    background: #39474E;
+    color: white;
+    top: 30px;
 }
 
 #signUpContainer {
@@ -82,7 +109,7 @@ body {
     border-radius: 5px;
 }
 
-#currentContainer {
+#currentContainer{
     position: relative;
     top: 30px;
 }
@@ -91,60 +118,172 @@ body {
     margin-right: 170px;
 }
 
-#bracket {
-    width: 100%;
-    height: 800px;
+#matchContainer{
+	width: 100%;
+	height: 800px;
+	display: inline-block;
+	font-size: 12px;
 }
 
-#tourney {
-    width: 500px;
-    position: relative;
+#matchContainer h3{
+	margin: 0px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	font-size: 16px;
+	text-decoration: underline;
 }
 
-#tourney div {
-    border: 1px solid #000;
-    border-left: 0;
-    padding: 5px;
-    position: absolute;
-    width: 180px;
+#matchContainer .bracketLine{
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	border-right: 1px solid black;
+	padding-top: 20px;
 }
 
-#tourney div:nth-of-type(1) {
-    top: 40px;
+#matchContainer p{
+	width: 84%;
+	margin: 0px;
 }
 
-#tourney div:nth-of-type(2) {
-    top: 80px;
+#matchContainer a{
+	text-decoration: none;
+	margin: 0;
+	color: blue;
 }
 
-#tourney div:nth-of-type(3) {
-    top: 180px;
+#matchContainer span{
+	color: purple;
 }
 
-#tourney div:nth-of-type(4) {
-    top: 250px;
+#firstRound{
+	position: relative;
+	display: inline-block;
+	width: 27%;
+	left: 30px;
+	top: 30px;
+}
+
+#firstRound span{
+	position: relative;
+	width: 10%;
+	left: 155px;
+	bottom: 28px;
+}
+
+#semiFinals{
+	position: relative;
+	display: inline-block;
+	width: 30%;
+	height: 70%;
+	left: 40px;
+	bottom: 30px;
+}
+
+#semiFinals h3{
+	margin-top: 150px;
+}
+
+#semiFinals span{
+	position: relative;
+	width: 10%;
+	left: 185px;
+	bottom: 28px;
+}
+
+#champion{
+	position: relative;
+	display: inline-block;
+	width: 35%;
+	left: 30px;
+	bottom: 180px;
+	padding-left: 30px;
+}
+
+#champion span{
+	position: relative;
+	width: 10%;
+	left: 10px;
+	font-size: 30px;
+	color: red;
+}
+
+#playerList{
+	width: 100%;
+	height: 800px;
+	overflow: scroll;
+}
+
+#playerList ul{
+	list-style: none;
+	display: inline-block;
+	margin: 0;
+}
+
+#playerList h2{
+	color: blue;
+}
+
+#playerList img{
+	position: relative;
+	display: inline-block;
+	width: 100px;
+	height: 100px;
+	border: 1px solid black;
+	border-radius: 10px;
+}
+
+#tourney h1{
+	margin: 0;
+}
+
+#tourneyList{
+	width: 100%;
+	height: 800px;
+	overflow: scroll;
+}
+
+#tourneyList a{
+	text-decoration: none;
+	color: blue;
+}
+
+#tourneyList .add{
+	width: 20%;
+	height: 25px;
+	padding-left: 10px;
+	border: 1px solid black;
+	border-radius: 5px;
+	font-size: 14px;
+}
+
+#tourneyList .submit{
+	width: 5%;
+	height: 20px;
+	border: 1px solid black;
+	border-radius: 5px;
+	background: gray;
+	color: white;
+}
+
+#color a{
+	color: red;
 }
 
 #footer{
-    width: 100%;
-    height: 45px;
-    position: relative;
-    border-top: 3px solid black;
+  width: 100%;
+  height: 45px;
+  position: relative;
+  border-top: 3px solid black;
 }
 
-#footer p {
-    position: relative;
-    display: inline-block;
-    margin: 0px;
-    top: 15px;
-    left: 20px;
+#footer p{
+  position: relative;
+  display: inline-block;
+  margin: 0px;
+  top: 15px;
+  left: 20px;
 }
 
-.player_list {
-    text-decoration: none;
-    list-style: none;
-}
-
-.fuck {
-    width: 100%;
+.displayNone{
+	display: none;
 }
