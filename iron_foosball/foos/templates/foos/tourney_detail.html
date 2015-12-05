@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    {% for game in games %}
+
+    {% if game.game_num == 1 %}
+    <h3>Game 1</h3>
+    <p><a href="{% url 'round2' game.player1.id %}">{{ game.player1 }}</a></p>
+    <p><a href="{% url 'round2' game.player2.id %}">{{ game.player2 }}</a></p>
+    <p>Winner: {{ game.winner }}</p>
+
+    {% elif game.game_num == 2 %}
+    <h3>Game 2</h3>
+    <p><a href="{% url 'round2' game.player1.id %}">{{ game.player1 }}</a></p>
+    <p><a href="{% url 'round2' game.player2.id %}">{{ game.player2 }}</a></p>
+    <p>Winner: {{ game.winner }}</p>
+
+    {% elif game.game_num == 3 %}
+    <h3>Game 3</h3>
+    <p><a href="{% url 'round2' game.player1.id %}">{{ game.player1 }}</a></p>
+    <p><a href="{% url 'round2' game.player2.id %}">{{ game.player2 }}</a></p>
+    <p>Winner: {{ game.winner }}</p>
+
+    {% elif game.game_num == 4 %}
+    <h3>Game 4</h3>
+    <p><a href="{% url 'round2' game.player1.id %}">{{ game.player1 }}</a></p>
+    <p><a href="{% url 'round2' game.player2.id %}">{{ game.player2 }}</a></p>
+    <p>Winner: {{ game.winner }}</p>
+
+    {% elif game.game_num == 5 %}
+    <h3>Game 5</h3>
+        {% if game.player1 %}
+            <p><a href="{% url 'round3' game.player1.id %}">{{ game.player1 }}</a></p>
+        {% endif %}
+        {% if game.player2 %}
+            <p><a href="{% url 'round3' game.player2.id %}">{{ game.player2 }}</a></p>
+        {% endif %}
+    <p>Winner: {{ game.winner }}</p>
+
+    {% elif game.game_num == 6 %}
+    <h3>Game 6</h3>
+        {% if game.player1 %}
+            <p><a href="{% url 'round3' game.player1.id %}">{{ game.player1 }}</a></p>
+        {% endif %}
+        {% if game.player2 %}
+            <p><a href="{% url 'round3' game.player2.id %}">{{ game.player2 }}</a></p>
+        {% endif %}
+    <p>Winner: {{ game.winner }}</p>
+        
+    {% elif game.game_num == 7 %}
+    <h3>Game 7</h3>
+        {% if game.player1 %}
+            <p><a href="{% url 'winner' game.player1.id %}">{{ game.player1 }}</a></p>
+        {% endif %}
+        {% if game.player2 %}
+            <p><a href="{% url 'winner' game.player2.id %}">{{ game.player2 }}</a></p>
+        {% endif %}
+    <p>Winner: {{ game.winner }}</p>
+    {% endif %}
+    {% endfor %}
+</body>
+</html>
