@@ -1,15 +1,33 @@
 import random
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, reverse_lazy
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.views.generic import DetailView, ListView
-from foos.forms import AddPlayerForm
+from django.views.generic import DetailView, ListView, CreateView
+from foos.forms import AddPlayerForm, TourneyForm
 from foos.models import Tourney, Game, Player
 from django.db.models import Q
 
 
+class CreateTourney(CreateView):
+    model = Tourney
+    form_class = TourneyForm
+    success_url = reverse_lazy('list_tourneys')
+    template_name = 'foos/create_tourney.html'
+
+
+    # def form_valid(self, form, *args, **kwargs):
+    #     player_name = self.request.POST.get('player')
+    #     if Player.objects.filter(name=player_name).count() == 0:
+    #         player = Player.objects.create(name=player_name)
+    #     else:
+    #         player = Player.objects.get(name=player_name)
+    #     form.instance.players.add(player)
+    #     return super().form_valid(form)
+
+
 class TourneyDetail(DetailView):
     model = Tourney
+    paginate_by = 10
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -19,29 +37,80 @@ class TourneyDetail(DetailView):
         context['games'] = games
         return context
 
-
 class ListTourneys(ListView):
     model = Tourney
+    queryset = Tourney.objects.order_by('-created_at')
+
+    def post(self, catch):
+        if self.request.method =='POST':
+            form = AddPlayerForm(self.request.POST)
+            if form.is_valid():
+                name = form.cleaned_data['player']
+                id = self.request.GET.get('num')
+                tourney = Tourney.objects.get(pk=id)
+                if Player.objects.filter(name=name).count() == 0:
+                    new_player = Player.objects.create(name=name)
+                    tourney.players.add(new_player)
+                    tourney.save()
+                else:
+                    player = Player.objects.get(name=name)
+                    tourney.players.add(player)
+                    tourney.save()
+
+                if tourney.players.count() == 8:
+                    tourney.is_running = True
+                    tourney.save()
+                    self.create_initial_games(tourney)
+                    return HttpResponseRedirect(reverse('tourney_detail',
+                                            kwargs={'pk': tourney.id}))
+            return HttpResponseRedirect(reverse('list_tourneys'))
+
+    @staticmethod
+    def create_initial_games(tourney):
+        player_list = []
+        for player in tourney.players.all():
+            player_list.append(player)
+        random.shuffle(player_list)
+        if len(player_list) == 8 and tourney.game_set.count() == 0:
+            game_num = 1
+            while len(player_list) > 0:
+                Game.objects.create(tourney=tourney,
+                                    player1=player_list.pop(),
+                                    player2=player_list.pop(),
+                                    game_num=game_num,
+                                    round_num=1)
+                game_num += 1
+
+        return HttpResponseRedirect(reverse('tourney_detail',
+                                            kwargs={'pk': tourney.id}))
+
+class ListPlayers(ListView):
+    model = Player
+    paginate_by = 10
+
+    # def get_queryset(self):
+    #     players = Player.objects.all()
+    #     return players
 
 
-def create_initial_games(request, tourney_id):
-    tourney = Tourney.objects.get(pk=tourney_id)
-    player_list = []
-    for player in tourney.players.all():
-        player_list.append(player)
-    random.shuffle(player_list)
-    if len(player_list) == 8 and tourney.game_set.count() == 0:
-        game_num = 1
-        while len(player_list) > 0:
-            Game.objects.create(tourney=tourney,
-                                player1=player_list.pop(),
-                                player2=player_list.pop(),
-                                game_num=game_num,
-                                round_num=1)
-            game_num += 1
-
-    return HttpResponseRedirect(reverse('tourney_detail',
-                                        kwargs={'pk': tourney_id}))
+# def create_initial_games(request, tourney_id):
+#     tourney = Tourney.objects.get(pk=tourney_id)
+#     player_list = []
+#     for player in tourney.players.all():
+#         player_list.append(player)
+#     random.shuffle(player_list)
+#     if len(player_list) == 8 and tourney.game_set.count() == 0:
+#         game_num = 1
+#         while len(player_list) > 0:
+#             Game.objects.create(tourney=tourney,
+#                                 player1=player_list.pop(),
+#                                 player2=player_list.pop(),
+#                                 game_num=game_num,
+#                                 round_num=1)
+#             game_num += 1
+#
+#     return HttpResponseRedirect(reverse('tourney_detail',
+#                                         kwargs={'pk': tourney_id}))
 
 
 def choose_winner(request, player_id):
@@ -134,10 +203,14 @@ def winner(request, player_id):
     game7.winner = winner
     game7.save()
     tourney.winner = winner
+    tourney.is_running = False
+    tourney.is_open = False
     tourney.save()
 
     return HttpResponseRedirect(reverse('tourney_detail',
                                         kwargs={'pk': tourney_id}))
+
+
 # def add_player(request):
 #     if request.method == 'POST':
 #         form = AddPlayerForm(request.POST)

@@ -16,9 +16,10 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from foos.views import TourneyDetail, ListTourneys
+from foos.views import TourneyDetail, ListTourneys, ListPlayers
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^tourneys/', include('foos.urls')),
+    url(r'^players/$', ListPlayers.as_view(), name='list_players'),
 ]

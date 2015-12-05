@@ -1,0 +1,13 @@
+{% extends 'foos/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    {% for player in player_list %}
+    <h2>{{ player.name }}</h2>
+    <ul>
+        <li>Wins: {{ player.wins }}</li>
+        <li>Losses: {{ player.losses }}</li>
+        <li>Winning Pct: {{ player.winning_pct }}</li>
+    </ul>
+    {% endfor %}
+{% endblock %}
