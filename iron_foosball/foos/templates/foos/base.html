@@ -6,13 +6,23 @@
     <meta charset="UTF-8">
     <title>Iron Foosball{% block title %}{% endblock %}</title>
     <link href="{% static "css/main.css" %}" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Sigmar+One' rel='stylesheet' type='text/css'>
 </head>
 <body>
-    <ul>
-        <li><a href="{% url 'list_tourneys' %}">Tournaments</a></li>
-        <li><a href="{% url 'list_players' %}">Players</a></li>
-        <li><a href="{% url 'create_tourney' %}">Create Tourney</a></li>
+	<div id="header">
+		<a id="homeBtn"  href="{% url 'create_tourney' %}"><img src="{% static 'images/ironyardlogo.png'%}" /></a>
+		<h1>Iron Foos</h1>
+    <ul id="createTour">
+      <li><a href="{% url 'list_tourneys' %}">Tournaments</a></li>
+      <li><a href="{% url 'list_players' %}">Players</a></li>
+      <li><a href="{% url 'create_tourney' %}">Create Tourney</a></li>
     </ul>
-    {% block content %}{% endblock %}
+	</div>
+  {% block content %}{% endblock %}
+  <div id="footer">
+    <p> &copy; 2015 Iron Foos, LLC</p>
+  </div>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="{% static "js/main.js" %}"></script>
 </body>
 </html>

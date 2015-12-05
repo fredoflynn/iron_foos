@@ -2,12 +2,21 @@
 {% load staticfiles %}
 
 {% block content %}
-    {% for player in player_list %}
-    <h2>{{ player.name }}</h2>
-    <ul>
-        <li>Wins: {{ player.wins }}</li>
-        <li>Losses: {{ player.losses }}</li>
-        <li>Winning Pct: {{ player.winning_pct }}</li>
-    </ul>
-    {% endfor %}
+	<div id="mainMain">
+		<div id="playerList">
+		  {% for player in player_list %}
+		  <h2>{{ player.name }}</h2>
+		  {% if player.winning_pct >= 0.5 %}
+		    <img src="{% static 'images/good.jpg' %}">
+		    {% else %}
+		    <img src="{% static 'images/bad.jpg' %}">
+		    {% endif %}
+		  <ul>
+		      <li>Wins: {{ player.wins }}</li>
+		      <li>Losses: {{ player.losses }}</li>
+		      <li>Winning Pct: {{ player.winning_pct }}</li>
+		  </ul>
+		  {% endfor %}
+		</div>
+	</div>
 {% endblock %}

@@ -1,19 +1,26 @@
 {% extends 'foos/base.html' %}
 {% load staticfiles %}
 
-{% block content %}
-<h2>Create Tournament</h2>
-    <!-- Django does not provide the form tag -->
-    <form method="post" action="{% url 'create_tourney' %}" class="form" enctype="multipart/form-data">
+  {% block content %}
+  <div id="mainMain">
+    <div id="homeContainer">
+      <h2>Welcome to Iron Foos</h2>
+      <br/>
+      <!-- Django does not provide the form tag -->
+      <img src="http://theleftahead.com/wp-content/uploads/2015/01/stock-footage-a-perspective-pan-through-the-middle-of-a-wooden-foosball-table-showing-a-blue-and-red-team-on-a.jpg" />
+      <p>Where students of The Iron Yard can sign up for a foosball tournament.</p>
+      <h3>Create Tournament</h3>
+      <form method="post" action="{% url 'create_tourney' %}" class="form" enctype="multipart/form-data">
         <!-- CSRF Token prevents cross site attacks and is required -->
         {% csrf_token %}
         {% for field in form %}
-            <div>
-            {{ field.errors }}
-            {{ field.label_tag }}{{ field }}
-            </div>
+          <div>
+          {{ field.errors }}
+          {{ field.label_tag }}{{ field }}
+          </div>
         {% endfor %}
         <!-- Django does not insert a submit button -->
-        <input type="submit" value="Chirp!" name="submit" class="btn btn-primary">
-    </form>
+        <input type="submit" value="Create" name="submit" class="btn btn-primary" id="joinNow" />
+      </form>
+    </div>
 {% endblock %}
