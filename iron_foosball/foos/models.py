@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 
 
@@ -8,16 +9,47 @@ class Player(models.Model):
     def __str__(self):
         return self.name
 
+    @property
+    def total_games(self):
+        return self.player1.count() + self.player2.count()
+
+    @property
+    def wins(self):
+        return self.game_set.count()
+
+    @property
+    def losses(self):
+        return self.total_games - self.wins
+
+    @property
+    def winning_pct(self):
+        if not self.total_games == 0:
+            return round(self.wins / self.total_games, 2)
+        else:
+            return 0
+
 
 class Tourney(models.Model):
     name = models.CharField(max_length=30)
     players = models.ManyToManyField(Player)
+    is_open = models.NullBooleanField(null=True, default=True)
+    is_running = models.NullBooleanField(null=True, default=False)
     winner = models.ForeignKey(Player, related_name='winner', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
 
 
     def __str__(self):
         return self.name
+
+    @property
+    def spots_open(self):
+        return 8 - self.players.count()
+
+
+    # def clean(self, *args, **kwargs):
+    #     if self.regions.count() > 8:
+    #         raise ValidationError("You can't assign more than three regions")
+    #     super(Tourney, self).clean()
 
 
 class Game(models.Model):

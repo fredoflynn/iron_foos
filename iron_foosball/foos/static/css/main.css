@@ -1,3 +1,4 @@
-h3 {
-    font-size: 30px;
+.player_list {
+    text-decoration: none;
+    list-style: none;
 }

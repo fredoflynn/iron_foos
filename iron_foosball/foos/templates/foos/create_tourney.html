@@ -1,0 +1,19 @@
+{% extends 'foos/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<h2>Create Tournament</h2>
+    <!-- Django does not provide the form tag -->
+    <form method="post" action="{% url 'create_tourney' %}" class="form" enctype="multipart/form-data">
+        <!-- CSRF Token prevents cross site attacks and is required -->
+        {% csrf_token %}
+        {% for field in form %}
+            <div>
+            {{ field.errors }}
+            {{ field.label_tag }}{{ field }}
+            </div>
+        {% endfor %}
+        <!-- Django does not insert a submit button -->
+        <input type="submit" value="Chirp!" name="submit" class="btn btn-primary">
+    </form>
+{% endblock %}

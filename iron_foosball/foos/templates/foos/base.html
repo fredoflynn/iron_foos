@@ -1,0 +1,18 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Iron Foosball{% block title %}{% endblock %}</title>
+    <link href="{% static "css/main.css" %}" rel="stylesheet">
+</head>
+<body>
+    <ul>
+        <li><a href="{% url 'list_tourneys' %}">Tournaments</a></li>
+        <li><a href="{% url 'list_players' %}">Players</a></li>
+        <li><a href="{% url 'create_tourney' %}">Create Tourney</a></li>
+    </ul>
+    {% block content %}{% endblock %}
+</body>
+</html>
