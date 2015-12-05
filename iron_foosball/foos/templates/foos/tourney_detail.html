@@ -1,8 +1,11 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <link href="{% static "css/main.css" %}" rel="stylesheet">
 </head>
 <body>
     {% for game in games %}
@@ -50,7 +53,7 @@
             <p><a href="{% url 'round3' game.player2.id %}">{{ game.player2 }}</a></p>
         {% endif %}
     <p>Winner: {{ game.winner }}</p>
-        
+
     {% elif game.game_num == 7 %}
     <h3>Game 7</h3>
         {% if game.player1 %}

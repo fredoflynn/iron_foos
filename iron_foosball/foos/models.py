@@ -30,4 +30,4 @@ class Game(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
-        return str(self.game_num)
+        return "Tournament: {}, Game: {}".format(self.tourney.name, self.game_num)

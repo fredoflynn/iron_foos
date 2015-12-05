@@ -23,6 +23,7 @@ class TourneyDetail(DetailView):
 class ListTourneys(ListView):
     model = Tourney
 
+
 def create_initial_games(request, tourney_id):
     tourney = Tourney.objects.get(pk=tourney_id)
     player_list = []
@@ -41,6 +42,7 @@ def create_initial_games(request, tourney_id):
 
     return HttpResponseRedirect(reverse('tourney_detail',
                                         kwargs={'pk': tourney_id}))
+
 
 def choose_winner(request, player_id):
     tourney_id = request.session.get('tourney')
@@ -90,6 +92,7 @@ def choose_winner(request, player_id):
     return HttpResponseRedirect(reverse('tourney_detail',
                                         kwargs={'pk': tourney_id}))
 
+
 def final(request, player_id):
     tourney_id = request.session.get('tourney')
     tourney = Tourney.objects.get(pk=tourney_id)
@@ -121,6 +124,7 @@ def final(request, player_id):
 
     return HttpResponseRedirect(reverse('tourney_detail',
                                         kwargs={'pk': tourney_id}))
+
 
 def winner(request, player_id):
     tourney_id = request.session.get('tourney')
