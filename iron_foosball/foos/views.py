@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.views.generic import DetailView, ListView, CreateView
 from foos.forms import AddPlayerForm, TourneyForm
 from foos.models import Tourney, Game, Player
-from django.db.models import Q
+from django.db.models import Q, Count
 
 
 class CreateTourney(CreateView):
@@ -27,7 +27,6 @@ class CreateTourney(CreateView):
 
 class TourneyDetail(DetailView):
     model = Tourney
-    paginate_by = 10
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -40,6 +39,7 @@ class TourneyDetail(DetailView):
 class ListTourneys(ListView):
     model = Tourney
     queryset = Tourney.objects.order_by('-created_at')
+    paginate_by = 10
 
     def post(self, catch):
         if self.request.method =='POST':
@@ -88,29 +88,10 @@ class ListPlayers(ListView):
     model = Player
     paginate_by = 10
 
-    # def get_queryset(self):
-    #     players = Player.objects.all()
-    #     return players
-
-
-# def create_initial_games(request, tourney_id):
-#     tourney = Tourney.objects.get(pk=tourney_id)
-#     player_list = []
-#     for player in tourney.players.all():
-#         player_list.append(player)
-#     random.shuffle(player_list)
-#     if len(player_list) == 8 and tourney.game_set.count() == 0:
-#         game_num = 1
-#         while len(player_list) > 0:
-#             Game.objects.create(tourney=tourney,
-#                                 player1=player_list.pop(),
-#                                 player2=player_list.pop(),
-#                                 game_num=game_num,
-#                                 round_num=1)
-#             game_num += 1
-#
-#     return HttpResponseRedirect(reverse('tourney_detail',
-#                                         kwargs={'pk': tourney_id}))
+    def get_queryset(self):
+        players = Player.objects.annotate(winning=Count('game')).\
+                                            order_by('-winning')
+        return players
 
 
 def choose_winner(request, player_id):
@@ -209,26 +190,3 @@ def winner(request, player_id):
 
     return HttpResponseRedirect(reverse('tourney_detail',
                                         kwargs={'pk': tourney_id}))
-
-
-# def add_player(request):
-#     if request.method == 'POST':
-#         form = AddPlayerForm(request.POST)
-#
-#         if form.is_valid():
-#             pass
-
-
-    #     if request.method == 'POST':
-    #     form = ChirpForm(request.POST)
-    #
-    #     if form.is_valid():
-    #         chirp = form.save(commit=False)
-    #         chirp.author = request.user
-    #         chirp.save()
-    #
-    #         return HttpResponseRedirect(reverse('list_chirps'))
-    # else:
-    #     form = ChirpForm()
-    #
-    # return render(request, 'chirp/chirp_create.html', {'form': form})

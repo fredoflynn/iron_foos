@@ -22,6 +22,10 @@ class Player(models.Model):
         return self.total_games - self.wins
 
     @property
+    def tourney_wins(self):
+        return self.tourney_set.filter(winner=self).count()
+
+    @property
     def winning_pct(self):
         if not self.total_games == 0:
             return round(self.wins / self.total_games, 2)
@@ -37,19 +41,12 @@ class Tourney(models.Model):
     winner = models.ForeignKey(Player, related_name='winner', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
 
-
     def __str__(self):
         return self.name
 
     @property
     def spots_open(self):
         return 8 - self.players.count()
-
-
-    # def clean(self, *args, **kwargs):
-    #     if self.regions.count() > 8:
-    #         raise ValidationError("You can't assign more than three regions")
-    #     super(Tourney, self).clean()
 
 
 class Game(models.Model):

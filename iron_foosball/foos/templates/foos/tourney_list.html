@@ -4,33 +4,40 @@
 {% block content %}
     {% for tourney in tourney_list %}
         {% if not tourney.spots_open == 0 %}
-        <p>OPEN</p>
-        <p><a href="{% url 'tourney_detail' tourney.id %}">{{ tourney.name }}</a></p>
-        <p>Spots Open: {{ tourney.spots_open }}</p>
-        <h3>Current Players</h3>
-        <ul class="player_list">
-        {% for player in tourney.players.all %}
-            <li>{{ player.name }}</li>
-        {% endfor %}
-        </ul>
+            <p><a href="{% url 'tourney_detail' tourney.id %}">{{ tourney.name }}</a></p>
+            <p>Spots Open: {{ tourney.spots_open }}</p>
+            <h3>Current Players</h3>
+            <ul class="player_list">
+            {% for player in tourney.players.all %}
+                <li>{{ player.name }}</li>
+            {% endfor %}
+            </ul>
 
-        <form action="{% url 'list_tourneys' %}?num={{ tourney.id }}" method="post">
-            {% csrf_token %}
-            <label for="your_name">Name to sign up: </label>
-            <input class="add" type="text" name="player" >
-            <input type="submit" value="ADD">
-        </form>
-        <hr>
+            <form action="{% url 'list_tourneys' %}?num={{ tourney.id }}" method="post">
+                {% csrf_token %}
+                <label for="your_name">Name to sign up: </label>
+                <input class="add" type="text" name="player" >
+                <input type="submit" value="ADD">
+            </form>
+            <hr>
         {% else %}
             {% if tourney.is_running %}
                 <p><a href="{% url 'tourney_detail' tourney.id %}">IN PROGRESS</a></p>
             {% endif %}
-            <p><a href="{% url 'tourney_detail' tourney.id %}">{{ tourney.name }}</a></p>
-            <p>Winner: {{ tourney.winner }}</p>
-            <hr>
+                <p><a href="{% url 'tourney_detail' tourney.id %}">{{ tourney.name }}</a></p>
+                <p>Winner: {{ tourney.winner }}</p>
+                <hr>
         {% endif %}
-
-
     {% endfor %}
+
+    {% if is_paginated %}
+        {% if page_obj.has_previous %}
+            <a href="{% url 'list_tourneys' %}?page={{ page_obj.previous_page_number }}"><-Prev</a>
+        {% endif %}
+        {{ page_obj }}
+        {% if page_obj.has_next %}
+            <a href="{% url 'list_tourneys' %}?page={{ page_obj.next_page_number }}">Next -></a>
+        {% endif %}
+    {% endif %}
 
 {% endblock %}
