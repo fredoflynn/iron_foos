@@ -10,6 +10,10 @@ class Player(models.Model):
         return self.name
 
     @property
+    def last_played_on(self):
+        return self.game_set.order_by('-created_at')[0].created_at
+
+    @property
     def total_games(self):
         return self.player1.count() + self.player2.count()
 
