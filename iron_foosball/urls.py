@@ -20,7 +20,7 @@ from foos.views import TourneyDetail, ListTourneys, ListPlayers, CreateTourney
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', CreateTourney.as_view(), name='create_tourney'),
+    url(r'^$', CreateTourney.as_view(), name='create_tourney'),
     url(r'^tourneys/', include('foos.urls')),
     url(r'^players/$', ListPlayers.as_view(), name='list_players'),
 ]
