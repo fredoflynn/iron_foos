@@ -30,6 +30,7 @@ body{
 
 #header a{
 	text-decoration: none;
+	color: blue;
 }
 
 #header img{
@@ -245,6 +246,15 @@ body{
 #tourneyList a{
 	text-decoration: none;
 	color: blue;
+}
+
+.spots{
+	color: forestgreen;
+}
+
+.tourneyWinner{
+	color: black;
+	font-size: 20px;
 }
 
 #tourneyList .add{
