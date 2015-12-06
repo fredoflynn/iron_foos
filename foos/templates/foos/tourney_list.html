@@ -8,7 +8,7 @@
       {% if not tourney.spots_open == 0 %}
       <p><a href="{% url 'tourney_detail' tourney.id %}">{{ tourney.name }}</a></p>
       <p class="spots">Spots Open: {{ tourney.spots_open }}</p>
-      <h3>Current Players</h3>
+      <h3>Registered Players</h3>
       <ul class="player_list">
       {% for player in tourney.players.all %}
           <li>{{ player.name }}</li>
