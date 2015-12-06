@@ -31,8 +31,7 @@
           <hr>
       {% endif %}
     {% endfor %}
-    </div>
-  {% if is_paginated %}
+      {% if is_paginated %}
         {% if page_obj.has_previous %}
             <a href="{% url 'list_tourneys' %}?page={{ page_obj.previous_page_number }}"><-Prev</a>
         {% endif %}
@@ -41,5 +40,6 @@
             <a href="{% url 'list_tourneys' %}?page={{ page_obj.next_page_number }}">Next -></a>
         {% endif %}
     {% endif %}
+    </div>
   </div>
 {% endblock %}

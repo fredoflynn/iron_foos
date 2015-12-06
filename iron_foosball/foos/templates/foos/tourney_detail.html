@@ -87,79 +87,78 @@
 	    </div>
 		</div>
 	</div>
-	<div id="matchContainer">
-	  {% for game in games %}
-	  
-    <h1>{{ tourney.name }}</h1>
-    {% if tourney.players.count < 8 %}
-        <h3>Registered Players</h3>
-        <ol>
-        {% for player in tourney.players.all %}
-        <li>{{ player.name }}</li>
-        {% endfor %}
-        </ol>
-        <form action="{% url 'list_tourneys' %}?num={{ tourney.id }}" method="post">
-            {% csrf_token %}
-            <label for="your_name">Name to sign up: </label>
-            <input class="add" type="text" name="player" >
-            <input type="submit" value="ADD">
-        </form>
-    {% endif %}
-    {% for game in games %}
-
-	  {% if game.game_num == 1 %}
-	  <h3>Game 1</h3>
-	  <p><a href="{% url 'round2' game.player1.id %}">{{ game.player1 }}</a></p>
-	  <p><a href="{% url 'round2' game.player2.id %}">{{ game.player2 }}</a></p>
-	  <p>Winner: {{ game.winner }}</p>
-
-	  {% elif game.game_num == 2 %}
-	  <h3>Game 2</h3>
-	  <p><a href="{% url 'round2' game.player1.id %}">{{ game.player1 }}</a></p>
-	  <p><a href="{% url 'round2' game.player2.id %}">{{ game.player2 }}</a></p>
-	  <p>Winner: {{ game.winner }}</p>
-
-	  {% elif game.game_num == 3 %}
-	  <h3>Game 3</h3>
-	  <p><a href="{% url 'round2' game.player1.id %}">{{ game.player1 }}</a></p>
-	  <p><a href="{% url 'round2' game.player2.id %}">{{ game.player2 }}</a></p>
-	  <p>Winner: {{ game.winner }}</p>
-
-	  {% elif game.game_num == 4 %}
-	  <h3>Game 4</h3>
-	  <p><a href="{% url 'round2' game.player1.id %}">{{ game.player1 }}</a></p>
-	  <p><a href="{% url 'round2' game.player2.id %}">{{ game.player2 }}</a></p>
-	  <p>Winner: {{ game.winner }}</p>
-
-	  {% elif game.game_num == 5 %}
-	  <h3>Game 5</h3>
-	      {% if game.player1 %}
-	          <p><a href="{% url 'round3' game.player1.id %}">{{ game.player1 }}</a></p>
-	      {% endif %}
-	      {% if game.player2 %}
-	          <p><a href="{% url 'round3' game.player2.id %}">{{ game.player2 }}</a></p>
-	      {% endif %}
-	  <p>Winner: {{ game.winner }}</p>
-
-	  {% elif game.game_num == 6 %}
-	  <h3>Game 6</h3>
-	      {% if game.player1 %}
-	          <p><a href="{% url 'round3' game.player1.id %}">{{ game.player1 }}</a></p>
-	      {% endif %}
-	      {% if game.player2 %}
-	          <p><a href="{% url 'round3' game.player2.id %}">{{ game.player2 }}</a></p>
-	      {% endif %}
-	  <p>Winner: {{ game.winner }}</p>
-    {% elif game.game_num == 7 %}
-    <h3>Game 7</h3>
-        {% if game.player1 %}
-            <p><a href="{% url 'winner' game.player1.id %}">{{ game.player1 }}</a></p>
-        {% endif %}
-        {% if game.player2 %}
-            <p><a href="{% url 'winner' game.player2.id %}">{{ game.player2 }}</a></p>
-        {% endif %}
-    <p>Winner: {{ game.winner }}</p>
-    {% endif %}
-    {% endfor %}
+{#	<div id="matchContainer">#}
+{##}
+{#    <h1>{{ tourney.name }}</h1>#}
+{#    {% if tourney.players.count < 8 %}#}
+{#        <h3>Registered Players</h3>#}
+{#        <ol>#}
+{#        {% for player in tourney.players.all %}#}
+{#        <li>{{ player.name }}</li>#}
+{#        {% endfor %}#}
+{#        </ol>#}
+{#        <form action="{% url 'list_tourneys' %}?num={{ tourney.id }}" method="post">#}
+{#            {% csrf_token %}#}
+{#            <label for="your_name">Name to sign up: </label>#}
+{#            <input class="add" type="text" name="player" >#}
+{#            <input type="submit" value="ADD">#}
+{#        </form>#}
+{#    {% endif %}#}
+{#    {% for game in games %}#}
+{##}
+{#	  {% if game.game_num == 1 %}#}
+{#	  <h3>Game 1</h3>#}
+{#	  <p><a href="{% url 'round2' game.player1.id %}">{{ game.player1 }}</a></p>#}
+{#	  <p><a href="{% url 'round2' game.player2.id %}">{{ game.player2 }}</a></p>#}
+{#	  <p>Winner: {{ game.winner }}</p>#}
+{##}
+{#	  {% elif game.game_num == 2 %}#}
+{#	  <h3>Game 2</h3>#}
+{#	  <p><a href="{% url 'round2' game.player1.id %}">{{ game.player1 }}</a></p>#}
+{#	  <p><a href="{% url 'round2' game.player2.id %}">{{ game.player2 }}</a></p>#}
+{#	  <p>Winner: {{ game.winner }}</p>#}
+{##}
+{#	  {% elif game.game_num == 3 %}#}
+{#	  <h3>Game 3</h3>#}
+{#	  <p><a href="{% url 'round2' game.player1.id %}">{{ game.player1 }}</a></p>#}
+{#	  <p><a href="{% url 'round2' game.player2.id %}">{{ game.player2 }}</a></p>#}
+{#	  <p>Winner: {{ game.winner }}</p>#}
+{##}
+{#	  {% elif game.game_num == 4 %}#}
+{#	  <h3>Game 4</h3>#}
+{#	  <p><a href="{% url 'round2' game.player1.id %}">{{ game.player1 }}</a></p>#}
+{#	  <p><a href="{% url 'round2' game.player2.id %}">{{ game.player2 }}</a></p>#}
+{#	  <p>Winner: {{ game.winner }}</p>#}
+{##}
+{#	  {% elif game.game_num == 5 %}#}
+{#	  <h3>Game 5</h3>#}
+{#	      {% if game.player1 %}#}
+{#	          <p><a href="{% url 'round3' game.player1.id %}">{{ game.player1 }}</a></p>#}
+{#	      {% endif %}#}
+{#	      {% if game.player2 %}#}
+{#	          <p><a href="{% url 'round3' game.player2.id %}">{{ game.player2 }}</a></p>#}
+{#	      {% endif %}#}
+{#	  <p>Winner: {{ game.winner }}</p>#}
+{##}
+{#	  {% elif game.game_num == 6 %}#}
+{#	  <h3>Game 6</h3>#}
+{#	      {% if game.player1 %}#}
+{#	          <p><a href="{% url 'round3' game.player1.id %}">{{ game.player1 }}</a></p>#}
+{#	      {% endif %}#}
+{#	      {% if game.player2 %}#}
+{#	          <p><a href="{% url 'round3' game.player2.id %}">{{ game.player2 }}</a></p>#}
+{#	      {% endif %}#}
+{#	  <p>Winner: {{ game.winner }}</p>#}
+{#    {% elif game.game_num == 7 %}#}
+{#    <h3>Game 7</h3>#}
+{#        {% if game.player1 %}#}
+{#            <p><a href="{% url 'winner' game.player1.id %}">{{ game.player1 }}</a></p>#}
+{#        {% endif %}#}
+{#        {% if game.player2 %}#}
+{#            <p><a href="{% url 'winner' game.player2.id %}">{{ game.player2 }}</a></p>#}
+{#        {% endif %}#}
+{#    <p>Winner: {{ game.winner }}</p>#}
+{#    {% endif %}#}
+{#    {% endfor %}#}
 {% endblock %}
 

@@ -12,12 +12,13 @@
 		    <img src="{% static 'images/bad.jpg' %}">
 		    {% endif %}
 		  <ul>
+              <li>Championships: {{ player.tourney_wins }}</li>
 		      <li>Wins: {{ player.wins }}</li>
 		      <li>Losses: {{ player.losses }}</li>
 		      <li>Winning Pct: {{ player.winning_pct }}</li>
 		  </ul>
 		  {% endfor %}
-		</div>
+        <hr>
         {% if is_paginated %}
           {% if page_obj.has_previous %}
             <a href="{% url 'list_players' %}?page={{ page_obj.previous_page_number }}"><-Prev</a>
@@ -27,5 +28,6 @@
             <a href="{% url 'list_players' %}?page={{ page_obj.next_page_number }}">Next -></a>
         {% endif %}
         {% endif %}
+		</div>
 	</div>
 {% endblock %}
