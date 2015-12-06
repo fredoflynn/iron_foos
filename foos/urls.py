@@ -9,7 +9,7 @@ urlpatterns = [
         name='round2'),
     url(r'^round3/(?P<player_id>\d+)/$', 'foos.views.final', name='round3'),
     url(r'^winner/(?P<player_id>\d+)/$', 'foos.views.winner', name='winner'),
-    url(r'^create/$', CreateTourney.as_view(), name='create_tourney'),
+    # url(r'^create/$', CreateTourney.as_view(), name='create_tourney'),
     url(r'(?P<pk>\d+)/$', TourneyDetail.as_view(), name='tourney_detail'),
     url(r'^$', ListTourneys.as_view(), name='list_tourneys'),
 ]
