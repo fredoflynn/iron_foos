@@ -7,7 +7,7 @@
     {% for tourney in tourney_list %}
       {% if not tourney.spots_open == 0 %}
       <p><a href="{% url 'tourney_detail' tourney.id %}">{{ tourney.name }}</a></p>
-      <p>Spots Open: {{ tourney.spots_open }}</p>
+      <p class="spots">Spots Open: {{ tourney.spots_open }}</p>
       <h3>Current Players</h3>
       <ul class="player_list">
       {% for player in tourney.players.all %}
@@ -27,7 +27,7 @@
           {% if tourney.is_running %}
               <p id="color"><a href="{% url 'tourney_detail' tourney.id %}">IN PROGRESS</a></p>
           {% endif %}
-          <p>Winner: {{ tourney.winner }}</p>
+          <p class="tourneyWinner">Winner: {{ tourney.winner }}</p>
           <hr>
       {% endif %}
     {% endfor %}
