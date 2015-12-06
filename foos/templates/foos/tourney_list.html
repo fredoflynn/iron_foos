@@ -17,7 +17,7 @@
 
       <form action="{% url 'list_tourneys' %}?num={{ tourney.id }}" method="post">
           {% csrf_token %}
-          <label for="your_name">Name to sign up: </label>
+          <label for="your_name">Any Name to sign up: </label>
           <input class="add" type="text" name="player" placeholder="Enter Name" >
           <input class="submit" type="submit" value="ADD">
       </form>
