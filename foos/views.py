@@ -45,7 +45,7 @@ class ListTourneys(ListView):
         if self.request.method =='POST':
             form = AddPlayerForm(self.request.POST)
             if form.is_valid():
-                name = form.cleaned_data['player']
+                name = form.cleaned_data['player'].lower()
                 id = self.request.GET.get('num')
                 tourney = Tourney.objects.get(pk=id)
                 if Player.objects.filter(name=name).count() == 0:
