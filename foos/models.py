@@ -11,7 +11,10 @@ class Player(models.Model):
 
     @property
     def last_played_on(self):
-        return self.game_set.order_by('-created_at')[0].created_at
+        if self.game_set.all():
+            return self.game_set.order_by('-created_at')[0].created_at
+        else:
+            return None
 
     @property
     def total_games(self):
